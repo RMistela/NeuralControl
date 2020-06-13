@@ -30,7 +30,7 @@ thetas = [Theta1(:) ; Theta2(:)]; %unroll thetas with removed bias terms.
 %re-normalize
 out = h = min(yr) + ((h - min(h))*(max(yr)-min(yr)))/(max(h)-min(h));
 
-h = h + mean(abs(h-yr));
+
 plot(yr)
 hold
 plot(h)
