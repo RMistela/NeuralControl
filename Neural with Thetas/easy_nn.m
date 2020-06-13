@@ -84,8 +84,9 @@ a4 = sigmoid(Theta3_grad * a3);
 [ip p] = max(a4', [], 2);
 h = out = a4;
 
-%Normalize!!
-%hr = out = min(yr) + ((h - min(h))*(max(yr)-min(yr)))/(max(h)-min(h));
+
+%Normalize to output
+hr = min(yr) + ((h - min(h))*(max(yr)-min(yr)))/(max(h)-min(h));
 
 %subplot (3, 1, 1)
 %plot (yr);
@@ -97,7 +98,12 @@ h = out = a4;
 %plot (X);
 %title('Input')  
 
-Reg = lambda*(sum(grad(:).*grad(:)))/(2*m);
+
+%Reg = lambda*(sum(grad(:).*grad(:)))/(2*m);
 %Cost Functions
-Jo = -1/m * sum(sum((y.*log(h)) + (1-y).*log(1-h))) + Reg;
+%Jo = -1/m * sum(sum((yr.*log(hr)) + (1-yr).*log(1-hr))) + Reg;
+SqrErrors = (hr-yr).^2;
+Jo = 1/(2*m)*sum(SqrErrors);
+
+
 end

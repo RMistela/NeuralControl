@@ -1,4 +1,4 @@
-function[out Jf] = easy(A,B,y,hidden_layer_size,lambda,Theta1, Theta2)
+function[out Jf] = easy(A,B,y,hidden_layer_size,lambda, Theta1, Theta2, Theta3,figure)
 
 %Input: X Y, y.
 
@@ -20,20 +20,27 @@ X = [ones(m,1) X];
 a2 = sigmoid(Theta1 * X');
 a2 = [ones(1,size(a2,2)) ; a2];
 a3 = sigmoid(Theta2 * a2);
-[k e] = size(a3);
-[ip p] = max(a3', [], 2);
-h = out = a3;
+a3 = [ones(1,size(a3,2)) ; a3];
+a4 = sigmoid(Theta3 * a3);
+[k e] = size(a4);
+[ip p] = max(a4', [], 2);
+h = out = a4;
 %Remove bias terms which are first columns of theta matrices.
 %UnTheta1 = Theta1(:,2:end); %Theta1(all row elements, from 2nd column to the ending one)
 %UnTheta2 = Theta2(:,2:end);
-thetas = [Theta1(:) ; Theta2(:)]; %unroll thetas with removed bias terms.
-%re-normalize
-out = h = min(yr) + ((h - min(h))*(max(yr)-min(yr)))/(max(h)-min(h));
+thetas = [Theta1(:) ; Theta2(:); Theta3(:)]; %unroll thetas with removed bias terms.
 
+%re-normalize h to y.
+out = hr = min(yr) + ((h - min(h))*(max(yr)-min(yr)))/(max(h)-min(h));
 
-plot(yr)
-hold
-plot(h)
+Reg = lambda*(sum(thetas(:).*thetas(:)))/(2*m);
+%Cost Functions
+Jo = -1/m * sum(sum((yr.*log(hr)) + (1-yr).*log(1-hr))) + Reg
+
+plot(hr);
+hold;
+plot(yr);
+title(Jo);
 
 %subplot (3, 1, 1)
 %plot (yr);
@@ -45,9 +52,9 @@ plot(h)
 %plot (X);
 %title('Input') 
 
-Reg = lambda*(sum(thetas(:).*thetas(:)))/(2*m);
-%Cost Functions
 
-Jf = -1/m * sum(sum((yr*log(h)) + (1-yr).*log(1-h))) + Reg;              
+
+%SqrErrors = (hr-yr).^2;
+%Jo = 1/(2*m)*sum(SqrErrors);         
 
 end

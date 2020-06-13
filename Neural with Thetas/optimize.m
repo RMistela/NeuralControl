@@ -1,13 +1,14 @@
-function[layermin lambdamin Theta1min Theta2min Theta3min] = optimizer(A,B,y)
+function[layermin lambdamin Theta1min Theta2min Theta3min] = optimize(A,B,y)
 
+figu = 1;
 Jmin = inf;
 layermin = 0;
 lambdamin = 0;
-lambda_vec = [0:0.1:100]';
-layers_vec = [1:1:100];
+lambda_vec = [0.1:0.1:10]';
+layers_vec = [5:1:100];
 for n = 1:length(lambda_vec)
   for i = 1:length(layers_vec)
-    [M J Theta1 Theta2 Theta3] = easy_nn(A,B,y',layers_vec(n),lambda_vec(i));
+    [M J Theta1 Theta2 Theta3] = easy_nn(A,B,y',layers_vec(i),lambda_vec(n));
     if J<Jmin
       Jmin = J
       layermin = layers_vec(n)
@@ -15,6 +16,7 @@ for n = 1:length(lambda_vec)
       Theta1min = Theta1;
       Theta2min = Theta2;
       Theta3min = Theta3;
+      easy(A,B,y,layermin,lambdamin, Theta1min, Theta2min, Theta3min);
     endif
   endfor
   endfor
