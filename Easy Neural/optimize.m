@@ -1,7 +1,7 @@
 function[layermin lambdamin Theta1min Theta2min Theta3min] = optimize(A,B,y)
 
-count = 1;
-Jmin = inf;
+count = 1; %Print plot counter.
+Jmin = inf %
 layermin = 0;
 lambdamin = 0;
 lambda_vec = [0.1:0.1:10]';
@@ -21,5 +21,4 @@ for n = 1:length(lambda_vec)
     endif
   endfor
   endfor
-
 end

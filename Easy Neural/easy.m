@@ -7,11 +7,10 @@ yr = y';
 A = (A .- min(A))/(max(A)-min(A));
 B = (B .- min(B))/(max(B)-min(B));
 y = (y .- min(y))/(max(y)-min(y));
-
 X = [A B];
 
 input_layer_size = columns(X);
-num_labels = 1;
+num_labels = columns(y);
 m = size(X, 1);
 % You need to return the following variables correctly                  
 Xb = X; %I create Xb as a backpropagation training set.
@@ -36,14 +35,17 @@ out = hr = min(yr) + ((h - min(h))*(max(yr)-min(yr)))/(max(h)-min(h));
 %Cost Functions
 %Jf = -1/m * sum(sum((y.*log(h)) + (1-y).*log(1-h))) + Reg
 
-SqrErrors = (h-y).^2;
-Jf = 1/(2*m)*sum(sum(SqrErrors));
+SqrErrors = (hr-yr).^2;
+Jf = 1/(2*m)*sum(SqrErrors);
 
 figure(f);
 plot(hr);
+xlabel("samples");
+ylabel("response");
 hold on;
 plot(yr);
-title(Jf);
+text = strcat("Cost: ",num2str(Jf),", hidden layer size: ",num2str(hidden_layer_size),", lambda: ",num2str(lambda));
+title(text);
 legend(" Neural Output Scaled","Output");
 saveas (f,num2str(f),"png");
 %print -dpng -color num2str(f).png
