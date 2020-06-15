@@ -21,7 +21,7 @@ Having wired to PID output, I collected as much data as i could while platform w
 Neural network to implement:
 
 <p align="center">
-<img src="https://github.com/Kompan15/NeuralControl/blob/master/Pictures/Neural.svg" alt="alt text" width="70%" height="70%">
+<img src="https://github.com/Kompan15/NeuralControl/blob/master/Pictures/Neural.svg" alt="alt text" width="60%" height="60%">
 </p>
 
 And the plan is to make it like that:
