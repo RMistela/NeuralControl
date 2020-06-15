@@ -12,7 +12,6 @@ X = [A B];
 input_layer_size = columns(X);
 num_labels = columns(y);
 m = size(X, 1);
-% You need to return the following variables correctly                  
 Xb = X; %I create Xb as a backpropagation training set.
 X = [ones(m,1) X];                   
              
@@ -31,12 +30,11 @@ thetas = [Theta1(:) ; Theta2(:); Theta3(:)]; %unroll thetas with removed bias te
 %re-normalize h to y.
 out = hr = min(yr) + ((h - min(h))*(max(yr)-min(yr)))/(max(h)-min(h));
 
-%Reg = lambda*(sum(thetas(:).*thetas(:)))/(2*m);
-%Cost Functions
-%Jf = -1/m * sum(sum((y.*log(h)) + (1-y).*log(1-h))) + Reg
+Reg = lambda*(sum(thetas(:).*thetas(:)))/(2*m);
+
 
 SqrErrors = (hr-yr).^2;
-Jf = 1/(2*m)*sum(SqrErrors);
+Jf = 1/(2*m)*sum(SqrErrors)+Reg;
 
 figure(f);
 plot(hr);
@@ -48,16 +46,6 @@ text = strcat("Cost: ",num2str(Jf),", hidden layer size: ",num2str(hidden_layer_
 title(text);
 legend(" Neural Output Scaled","Output");
 saveas (f,num2str(f),"png");
-%print -dpng -color num2str(f).png
 hold off;
 
-%subplot (3, 1, 1)
-%plot (yr);
-%title('Original output')  
-%subplot (3, 1, 2)
-%plot (h);
-%title('Output')  
-%subplot (3, 1, 3)
-%plot (X);
-%title('Input') 
 end

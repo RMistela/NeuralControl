@@ -82,20 +82,6 @@ h = out = a4;
 %Normalize to output
 hr = min(yr) + ((h - min(h))*(max(yr)-min(yr)))/(max(h)-min(h));
 
-%subplot (3, 1, 1)
-%plot (yr);
-%title('Original output')  
-%subplot (3, 1, 2)
-%plot (hr);
-%title('Output')  
-%subplot (3, 1, 3)
-%plot (X);
-%title('Input')  
-
-
-%Reg = lambda*(sum(grad(:).*grad(:)))/(2*m);
-%Cost Functions
-%Jb = -1/m * sum(sum((y.*log(h)) + (1-y).*log(1-h))) + Reg;
 SqrErrors = (hr-yr).^2;
 Jb = 1/(2*m)*sum(SqrErrors);
 
