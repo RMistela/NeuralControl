@@ -16,7 +16,7 @@ Embedded PID handling the control:
 </p>
 
 
-I wanted it to be a finished project before publishing, but opportunity presented itself a bit earlier.
+I wanted it to be a complete project before publishing, but opportunity presented itself a bit earlier.
 Having wired to PID output, I collected as much data as i could while platform was working and exported it to octave for further processing.
 Neural network to implement:
 
