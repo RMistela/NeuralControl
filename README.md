@@ -55,6 +55,7 @@ for t = 1:size(X, 1);
 2. Backpropagation algorithm (Cost function minimalization)
 
 ```Matlab
+...
   delta4 = a4 - y(t);
   delta3 = Theta3(:,2:end)'*delta4.*sigmoidGradient(z3);
   delta2 = Theta2(:,2:end)'*delta3.*sigmoidGradient(z2);
