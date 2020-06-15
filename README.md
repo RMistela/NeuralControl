@@ -35,7 +35,8 @@ Three scripts to handle this so far:
 1. Forward Propagation Algorithm (Neural network taking data and weights matrix as input)
 
 ```Matlab
-a1 = Xb(t,:)';
+for t = 1:size(X, 1);
+  a1 = Xb(t,:)';
   a1 = [1;a1];
   
   z2 = Theta1*a1;
