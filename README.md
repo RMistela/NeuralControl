@@ -24,6 +24,12 @@ Neural network to implement:
 <img src="https://github.com/Kompan15/NeuralControl/blob/master/Pictures/Neural.svg" alt="alt text" width="70%" height="70%">
 </p>
 
+And the plan is to make it like that:
+
+<p align="center">
+<img src="https://github.com/Kompan15/NeuralControl/blob/master/Pictures/NeuralPid.svg" alt="alt text" width="70%" height="70%">
+</p>
+
 Three scripts to handle this so far:
 1.Backpropagation algorithm (Cost function minimalization)
 2.Forward Propagation Algorithm (Neural network taking data and weights matrix as input)
