@@ -65,7 +65,7 @@ for t = 1:size(X, 1);
 endfor
 ```
 
-3. Optimizer (Basically loop within a loop trying out diffrent hidden layers sizes + lambdas looking for smallest cost function value)
+3. Optimizer (Basically loop within a loop trying out different hidden layers sizes + lambdas looking for smallest cost function value)
 ```Matlab
 for n = 1:length(lambda_vec)
   for i = 1:length(layers_vec)
