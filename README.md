@@ -100,5 +100,5 @@ This seems (for me) like an manifestation of a famous quote:
 
 >         It's not who has the best algorithm that wins,It's who has the most data     
 
-to be continued...
+to be continued!
 
