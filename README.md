@@ -31,9 +31,57 @@ And the plan is to make it like that:
 </p>
 
 Three scripts to handle this so far:
-1.Backpropagation algorithm (Cost function minimalization)
-2.Forward Propagation Algorithm (Neural network taking data and weights matrix as input)
-3.Optimizer (Basically loop within a loop trying out diffrent hidden layers sizes + lambdas looking for smallest cost function value)
+
+1. Forward Propagation Algorithm (Neural network taking data and weights matrix as input)
+
+```Matlab
+a1 = Xb(t,:)';
+  a1 = [1;a1];
+  
+  z2 = Theta1*a1;
+  a2 = sigmoid(z2);
+  a2 = [ones(1,size(a2,2)) ; a2];
+  
+  z3 = Theta2*a2;
+  a3 = sigmoid(z3);
+  a3 = [ones(1,size(a3,2)) ; a3];
+  
+  z4 = Theta3*a3;
+  a4 = sigmoid(z4);
+  ...
+```
+
+2. Backpropagation algorithm (Cost function minimalization)
+
+```Matlab
+  delta4 = a4 - y(t);
+  delta3 = Theta3(:,2:end)'*delta4.*sigmoidGradient(z3);
+  delta2 = Theta2(:,2:end)'*delta3.*sigmoidGradient(z2);
+  DELTA1 += delta2*a1';
+  DELTA2 += delta3*a2';
+  DELTA2 += delta4*a3';
+endfor
+```
+
+3. Optimizer (Basically loop within a loop trying out diffrent hidden layers sizes + lambdas looking for smallest cost function value)
+```Matlab
+for n = 1:length(lambda_vec)
+  for i = 1:length(layers_vec)
+    [M Jb Theta1 Theta2 Theta3] = easy_nn(A,B,y',layers_vec(i),lambda_vec(n));
+    if Jb<Jmin
+      Jmin = Jb;
+      layermin = layers_vec(i);
+      lambdamin = lambda_vec(n);
+      Theta1min = Theta1;
+      Theta2min = Theta2;
+      Theta3min = Theta3;
+      easy(A,B,y,layermin,lambdamin, Theta1min, Theta2min, Theta3min, count);
+      count++
+    endif
+  endfor
+  endfor
+end
+```
 
 In my case it means approximately 9987 networks going straight to :toilet:, 13 pretenders and one winner:
 You can clearly see that increasing amount of data fed into the neural network is simultaneously decreasing the penalty (cost function):
@@ -50,5 +98,7 @@ You can clearly see that increasing amount of data fed into the neural network i
 
 This seems (for me) like an manifestation of a famous quote:
 
-> It's not who has the best algorithm that wins,It's who has the most data          
+>         It's not who has the best algorithm that wins,It's who has the most data     
+
+to be continued...
 
