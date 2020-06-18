@@ -34,12 +34,14 @@ tic();
   %Do something
 toc();
 
+...
 Elapsed time is 1.1198 seconds.
 Elapsed time is 1.03619 seconds.
 Elapsed time is 1.01856 seconds.
 Elapsed time is 1.04025 seconds.
 Elapsed time is 1.06346 seconds.
 Elapsed time is 1.11821 seconds.
+...
 ```
 Quick math:
 10 000 examples *  1s +/- 0.5s to compute gives me roughly 2hrs and 46 min (painfully slow)
