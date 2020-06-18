@@ -35,10 +35,7 @@ Three scripts to handle this so far:
 1. Forward Propagation Algorithm (Neural network taking data and weights matrix as input)
 
 ```Matlab
-for t = 1:size(X, 1);
-  a1 = Xb(t,:)';
-  a1 = [1;a1];
-  
+  a1 = [ones(m,1) X]';
   z2 = Theta1*a1;
   a2 = sigmoid(z2);
   a2 = [ones(1,size(a2,2)) ; a2];
@@ -56,12 +53,12 @@ for t = 1:size(X, 1);
 
 ```Matlab
 ...
-  delta4 = a4 - y(t);
+  delta4 = a4 .- y;
   delta3 = Theta3(:,2:end)'*delta4.*sigmoidGradient(z3);
   delta2 = Theta2(:,2:end)'*delta3.*sigmoidGradient(z2);
-  DELTA1 += delta2*a1';
-  DELTA2 += delta3*a2';
-  DELTA2 += delta4*a3';
+  DELTA1 = delta2*a1';
+  DELTA2 = delta3*a2';
+  DELTA2 = delta4*a3';
 endfor
 ```
 
