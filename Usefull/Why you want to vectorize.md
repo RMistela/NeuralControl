@@ -50,10 +50,7 @@ NOW
 Vectorization is a technique allowing you to use highly optimized vector calculus to carry iteration for you.
 
 ```Matlab
-for t = 1:m
-  a1 = Xb(t,:)';
-  a1 = [1;a1];
-  
+  a1 = [ones(m,1) X]';
   z2 = Theta1*a1;
   a2 = sigmoid(z2);
   a2 = [ones(1,size(a2,2)) ; a2];
@@ -65,13 +62,12 @@ for t = 1:m
   z4 = Theta3*a3;
   a4 = sigmoid(z4);
   
-  delta4 = a4 - y(t);
+  delta4 = a4 .- y;
   delta3 = Theta3(:,2:end)'*delta4.*sigmoidGradient(z3);
   delta2 = Theta2(:,2:end)'*delta3.*sigmoidGradient(z2);
-  DELTA1 += delta2*a1';
-  DELTA2 += delta3*a2';
-  DELTA2 += delta4*a3';
-endfor
+  DELTA1 = delta2*a1';
+  DELTA2 = delta3*a2';
+  DELTA2 = delta4*a3';
 
 Elapsed time is 0.0116901 seconds.
 Elapsed time is 0.0122101 seconds.
