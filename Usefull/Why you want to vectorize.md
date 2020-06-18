@@ -42,7 +42,7 @@ Elapsed time is 1.06346 seconds.
 Elapsed time is 1.11821 seconds.
 ```
 Quick math:
-10 000 examples * +/- 1s to compute gives me roughly 2hrs and 46 min (painfully slow)
+10 000 examples *  1s +/- 0.5s to compute gives me roughly 2hrs and 46 min (painfully slow)
 
 NOW
 ===
