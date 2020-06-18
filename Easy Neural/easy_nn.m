@@ -1,4 +1,4 @@
-function[out Jb Theta1_grad Theta2_grad Theta3_grad] = easy_nn(A,B,y,hidden_layer_size,lambda)
+function[out Jb Theta1_grad Theta2_grad Theta3_grad] = easy_nn(A,B,y,hidden_layer_size,lambda,f)
 
 %Input: X Y, y.
 
@@ -23,8 +23,6 @@ Theta1_grad = zeros(size(Theta1));
 Theta2_grad = zeros(size(Theta2));
 Theta3_grad = zeros(size(Theta3));
 
-Xb = X; %I create Xb as a backpropagation training set.
-X = [ones(m,1) X];
 
 %Gradient
 DELTA1 = zeros(size(Theta1));
@@ -40,10 +38,7 @@ Th3rg = Theta3;
 Th3rg(:,1) = 0;
 
 %BackProp
-for t = 1:m
-  a1 = Xb(t,:)';
-  a1 = [1;a1];
-  
+  a1 = [ones(m,1) X]';
   z2 = Theta1*a1;
   a2 = sigmoid(z2);
   a2 = [ones(1,size(a2,2)) ; a2];
@@ -55,21 +50,20 @@ for t = 1:m
   z4 = Theta3*a3;
   a4 = sigmoid(z4);
   
-  delta4 = a4 - y(t);
+  delta4 = a4 .- y;
   delta3 = Theta3(:,2:end)'*delta4.*sigmoidGradient(z3);
   delta2 = Theta2(:,2:end)'*delta3.*sigmoidGradient(z2);
-  DELTA1 += delta2*a1';
-  DELTA2 += delta3*a2';
-  DELTA2 += delta4*a3';
-endfor
-
+  DELTA1 = delta2*a1';
+  DELTA2 = delta3*a2';
+  DELTA2 = delta4*a3';
+  
 Theta1_grad = (1/m) * DELTA1 + (lambda/m) * Th1rg;
 Theta2_grad = (1/m) * DELTA2 + (lambda/m) * Th2rg;
 Theta3_grad = (1/m) * DELTA3 + (lambda/m) * Th3rg;
 grad = [Theta1_grad(:); Theta2_grad(:); Theta3_grad(:)];
 
 %Forward Prop
-a2 = sigmoid(Theta1_grad * X');
+a2 = sigmoid(Theta1_grad * [ones(m,1) X]');
 a2 = [ones(1,size(a2,2)) ; a2];
 a3 = sigmoid(Theta2_grad * a2);
 a3 = [ones(1,size(a3,2)) ; a3];
@@ -81,9 +75,15 @@ h = out = a4;
 
 %Normalize to output
 hr = min(yr) + ((h - min(h))*(max(yr)-min(yr)))/(max(h)-min(h));
-
 SqrErrors = (hr-yr).^2;
 Jb = 1/(2*m)*sum(SqrErrors);
+
+
+
+%Reg = lambda*(sum(grad(:).*grad(:)))/(2*m);
+%Cost Functions
+%Jb = -1/m * sum(sum((y.*log(h)) + (1-y).*log(1-h)));
+
 
 
 end
