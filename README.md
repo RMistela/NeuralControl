@@ -32,7 +32,7 @@ And the plan is to make it like that:
 
 Three scripts to handle this so far:
 
-1. Forward Propagation Algorithm (Neural network taking data and weights matrix as input)
+1. Forward Propagation Algorithm (Neural network taking data and weights matrix as input) [Vectorized](https://github.com/Kompan15/NeuralControl/blob/master/Usefull/Why%20you%20want%20to%20vectorize.md "Why Vectorize?") :
 
 ```Matlab
   a1 = [ones(m,1) X]';
