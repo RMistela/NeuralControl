@@ -59,7 +59,6 @@ Three scripts to handle this so far:
   DELTA1 = delta2*a1';
   DELTA2 = delta3*a2';
   DELTA2 = delta4*a3';
-endfor
 ```
 
 3. Optimizer (Basically loop within a loop trying out different hidden layers sizes + lambdas looking for smallest cost function value)
