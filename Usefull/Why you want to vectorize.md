@@ -68,13 +68,5 @@ Vectorization is a technique allowing you to use highly optimized vector calculu
   DELTA1 = delta2*a1';
   DELTA2 = delta3*a2';
   DELTA2 = delta4*a3';
-
-Elapsed time is 0.0116901 seconds.
-Elapsed time is 0.0122101 seconds.
-Elapsed time is 0.014168 seconds.
-Elapsed time is 0.0161221 seconds.
-Elapsed time is 0.0170279 seconds.
-Elapsed time is 0.0182679 seconds.
-Elapsed time is 0.0213809 seconds
 ```
-Now the time required to burst through all parameters is shortened by a factor of 
+Now the time required to burst through all parameters is about 10x smaller than before! (~1075s)
