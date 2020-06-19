@@ -71,4 +71,4 @@ Vectorization is a technique allowing you to use highly optimized vector calculu
   DELTA2 = delta3*a2';
   DELTA2 = delta4*a3';
 ```
-Now the time required to burst through all parameters takes aproximately 1075 sec, which is about 10 times faster than a loop.
+Now the time required to burst through all parameters takes aproximately 1075 sec ~ 17 mins. Much faster
