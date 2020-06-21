@@ -90,7 +90,7 @@ You can clearly see that increasing amount of data fed into the neural network i
 
 <img src="https://media.giphy.com/media/XDKqws1GpZ8TVbCWDr/giphy.gif" width="35%" height="35%">
 
-<img src="https://media.giphy.com/media/RISC8EPYWpVcRb1Apa/giphy.gif" width="35%" height="35%">
+<img src="https://media.giphy.com/media/KZBS1YkVHVEdcXVy38/giphy.gif" width="35%" height="35%">
 
 </p>
 
