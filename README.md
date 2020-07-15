@@ -61,7 +61,7 @@ Three scripts to handle this so far:
   DELTA2 = delta4*a3';
 ```
 
-3. Optimizer (Basically loop within a loop trying out different hidden layers sizes + lambdas looking for smallest cost function value)
+3. Hyperparameters optimizer (Basically loop within a loop trying out different hidden layers sizes + lambdas looking for smallest cost function value)
 ```Matlab
 for n = 1:length(lambda_vec)
   for i = 1:length(layers_vec)
